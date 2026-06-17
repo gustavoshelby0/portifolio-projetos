@@ -1,566 +1,911 @@
 <!DOCTYPE html>
-<html class="js svg audio canvas cssremunit csscalc cssgradients supports no-touchevents video cssanimations cssfilters flexbox flexboxlegacy no-flexboxtweener flexwrap csstransforms csstransforms3d csstransitions backgroundblendmode ss-loaded" lang="pt-br" style="" data-useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36">
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Gustavo Shelby</title>
-    <meta name="description" content="Portfolio de Gustavo Shelby, Analista de Dados.">
-    <meta name="author" content="Gustavo Shelby">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0b0b0b;
+            color: #d0d0d0;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        a {
+            color: #D9CB30;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #f5e85a;
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5 {
+            color: #fff;
+            font-weight: 600;
+        }
+        h1 {
+            font-size: 2.8rem;
+        }
+        h2 {
+            font-size: 2.2rem;
+            border-bottom: 3px solid #D9CB30;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+        h3 {
+            font-size: 1.6rem;
+            color: #D9CB30;
+        }
+        h4 {
+            font-size: 1.3rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        li {
+            margin-bottom: 0.3rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        /* ===== HEADER ===== */
+        .header {
+            background: #111;
+            border-bottom: 1px solid #2a2a2a;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .logo h1::before {
+            content: "◈ ";
+            color: #D9CB30;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+        }
+        .nav ul li a {
+            color: #ccc;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+        .nav ul li a:hover {
+            color: #D9CB30;
+            text-decoration: none;
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                background: #111;
+                padding: 1rem;
+                gap: 0.5rem;
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+            }
+            .nav ul.open {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+            }
+        }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/static/website/css/base.c6286fc8a67d.css">
-    <link rel="stylesheet" href="/static/website/css/vendor.9c7c2371d999.css">
-    <link rel="stylesheet" href="/static/website/css/main.0943f4200261.css">
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            background: #0b0b0b;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 3px solid #D9CB30;
+        }
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        .hero h1 span {
+            color: #D9CB30;
+        }
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #bbb;
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+        .hero .subtitle span {
+            color: #D9CB30;
+            font-weight: 600;
+        }
+        .hero .location {
+            font-size: 1.2rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid #D9CB30;
+            background: transparent;
+            color: #D9CB30;
+        }
+        .btn:hover {
+            background: #D9CB30;
+            color: #000;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #D9CB30;
+            color: #000;
+        }
+        .btn-primary:hover {
+            background: #f5e85a;
+            border-color: #f5e85a;
+        }
+        .scroll-down {
+            margin-top: 3rem;
+            display: inline-block;
+            color: #aaa;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+        .scroll-down:hover {
+            color: #D9CB30;
+            text-decoration: none;
+        }
 
-    <!-- Scripts -->
-    <script src="/static/website/js/modernizr.c6537b1adb7e.js"></script>
-    <script src="/static/website/js/pace.min.874d8be9cd6d.js"></script>
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            border-bottom: 3px solid #D9CB30;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+        .section-title p {
+            color: #aaa;
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
 
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="/static/website/images/favicon.b68a492bcb32.ico" type="image/x-icon">
-    <link rel="icon" href="/static/website/images/favicon.b68a492bcb32.ico" type="image/x-icon">
+        /* ===== ABOUT ===== */
+        #about {
+            background: #121212;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .about-text p {
+            text-align: justify;
+        }
+        .about-skills {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .skill-item {
+            margin-bottom: 1.2rem;
+        }
+        .skill-item .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #ddd;
+            margin-bottom: 0.2rem;
+        }
+        .skill-item .skill-name .val {
+            color: #D9CB30;
+            font-weight: 600;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: #D9CB30;
+            border-radius: 10px;
+            width: 0%;
+        }
 
-    <!-- Google Analytics (opcional, mantenha ou remova) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BPGKXMRYY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2BPGKXMRYY');
-    </script>
+        .about-contact {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* ===== TIMELINE (Currículo) ===== */
+        #resume {
+            background: #0f0f0f;
+        }
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 1rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #D9CB30;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.4rem;
+            width: 12px;
+            height: 12px;
+            background: #D9CB30;
+            border-radius: 50%;
+            border: 3px solid #0f0f0f;
+            box-shadow: 0 0 0 3px #D9CB30;
+        }
+        .timeline-item .date {
+            font-size: 0.85rem;
+            color: #D9CB30;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .timeline-item h4 {
+            color: #fff;
+            margin: 0.2rem 0;
+        }
+        .timeline-item .institution {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+        .timeline-item .desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+        .timeline-item ul {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PORTFOLIO ===== */
+        #portfolio {
+            background: #121212;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+        .project-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #D9CB30;
+        }
+        .project-card .thumb {
+            width: 100%;
+            height: 180px;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .project-card .info {
+            padding: 1.2rem 1.5rem;
+        }
+        .project-card .info h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin: 0 0 0.3rem;
+        }
+        .project-card .info .cat {
+            color: #D9CB30;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .project-card .info p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0;
+        }
+        .project-card .info .links {
+            margin-top: 0.8rem;
+        }
+        .project-card .info .links a {
+            color: #D9CB30;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+        .project-card .info .links a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ===== STATS ===== */
+        #stats {
+            background: #0b0b0b;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #D9CB30;
+        }
+        .stat-item .label {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            background: #0b0b0b;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-item h4 {
+            color: #D9CB30;
+            margin-bottom: 0.2rem;
+        }
+        .contact-item p {
+            color: #ccc;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0b0b0b;
+            border-top: 1px solid #2a2a2a;
+            padding: 2rem 0;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        footer .social a {
+            color: #aaa;
+            font-size: 1.4rem;
+        }
+        footer .social a:hover {
+            color: #D9CB30;
+            text-decoration: none;
+        }
+        footer .copyright strong {
+            color: #D9CB30;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            .about-grid,
+            .resume-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body id="top" class="pace-done">
-    <div class="parallax-mirror" style="visibility: visible; z-index: -100; position: fixed; top: 0px; left: 0px; overflow: hidden; transform: translate3d(0px, 0px, 0px); height: 904px; width: 1350px;">
-        <img class="parallax-slider" src="/static/website/images/hero-bg.5cc5fb184c6a.jpg" style="transform: translate3d(0px, 0px, 0px); position: absolute; top: 0px; left: -3px; height: 904px; width: 1356px; max-width: none;">
-    </div>
-    <div class="pace pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);"><div class="pace-progress-inner"></div></div><div class="pace-activity"></div></div>
-
-    <!-- Header -->
-    <header class="s-header">
-        <nav class="header-nav-wrap">
-            <ul class="header-nav">
-                <li><a class="smoothscroll" href="#top" title="Início">Início</a></li>
-                <li><a class="smoothscroll" href="#about" title="Sobre">Sobre</a></li>
-                <li><a class="smoothscroll" href="#works" title="Portfolio">Portfolio</a></li>
-                <li><a class="smoothscroll" href="#blog" title="Blog">Blog</a></li>
-                <li><a class="smoothscroll" href="#contact" title="Contato">Contato</a></li>
-            </ul>
-        </nav>
-        <a class="header-menu-toggle" href="#0"><span>Menu</span></a>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="logo"><h1>Portfolio</h1></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#resume">Currículo</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- Home -->
-    <section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-image-src="/static/website/images/hero-bg.5cc5fb184c6a.jpg" data-natural-width="3000" data-natural-height="2000" data-position-y="center">
-        <div class="overlay"></div>
-        <div class="shadow-overlay"></div>
-        <div class="home-content">
-            <div id="particles-js"><canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="1350" height="904"></canvas></div>
-            <div class="row home-content__main">
-                <h3>Sejam bem-vindos ao meu Portfolio!</h3>
-                <h1>Gustavo Vieira da Silva Bastos.</h1>
-                <p class="banner">
-                    <span> Analista de Dados</span><br>
-                    <span>Fortaleza/CE, Brasil</span>
-                </p>
-                <div class="home-content__buttons">
-                    <a href="#works" class="smoothscroll btn btn--stroke">Últimos Projetos</a>
-                    <a href="#about" class="smoothscroll btn btn--stroke">Sobre mim</a>
-                </div>
-                <div class="home-content__scroll">
-                    <a href="#about" class="scroll-link smoothscroll"><span>Rolar para baixo</span></a>
-                </div>
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container">
+            <h1>Gustavo Vieira da Silva Bastos</h1>
+            <p class="subtitle"><span>Analista de Dados</span></p>
+            <p class="location">Fortaleza/CE, Brasil</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn">Últimos Projetos</a>
+                <a href="#about" class="btn btn-primary">Sobre mim</a>
             </div>
+            <a href="#about" class="scroll-down">Rolar para baixo ↓</a>
         </div>
-        <ul class="home-social">
-            <li><a href="https://www.linkedin.com/in/gustavoshelby/" target="_blank"><i class="im im-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a></li>
-            <li><a href="https://github.com/gustavoshelby0" target="_blank"><i class="im im-github" aria-hidden="true"></i><span>Github</span></a></li>
-        </ul>
     </section>
 
-    <!-- About -->
-    <section id="about" class="s-about target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full text-center">
-                <h3>Sobre</h3>
-                <h1>Um pouco sobre mim.</h1>
-                <p class="lead">Um (breve) resumo sobre minha vida profissional.</p>
+    <!-- ===== SOBRE ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre</h2>
+                <p>Um pouco sobre mim.</p>
             </div>
-        </div>
-
-        <div class="row about-content">
-            <div class="col-six tab-full left">
-                <h3>Olá!</h3>
-                <p style="text-align: justify;">
-                    Atualmente estou voltando minha prática e meus estudos para Análise de Dados. Procuro estar sempre atualizado quanto às novas tecnologias para criar ferramentas mais modernas e avançadas.
-                </p>
-                <p style="text-align: justify;">
-                    Busco oportunidades como Analista de Dados onde eu possa aplicar minhas habilidades em análise descritiva e diagnóstica para auxiliar na tomada de decisão.
-                </p>
-                <p style="text-align: justify;">
-                    Trabalhei como Gestor de Market de forma autônoma e também fui vendedor de consórcio de veículos, mas isso não vem ao caso aqui.
-                </p>
-            </div>
-
-            <div class="col-six tab-full right">
-                <h3>Minhas principais habilidades.</h3>
-                <div id="owl-slider-skills" class="owl-carousel skill-list owl-theme" style="opacity: 1; display: block;">
-                    <div class="owl-wrapper-outer">
-                        <div class="owl-wrapper" style="width: 1080px; left: 0px; display: block; transition: all; transform: translate3d(0px, 0px, 0px);">
-                            <div class="owl-item" style="width: 540px;">
-                                <div>
-                                    <ul class="skill-bars">
-                                        <li>
-                                            <div class="progress percent90"><span>90%</span></div>
-                                            <strong>Análise descritiva e diagnóstica</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent100"><span>100%</span></div>
-                                            <strong>Excel</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent100"><span>100%</span></div>
-                                            <strong>Power BI</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent100"><span>100%</span></div>
-                                            <strong>SQL</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent100"><span>100%</span></div>
-                                            <strong>Python</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent80"><span>80%</span></div>
-                                            <strong>Estatística</strong>
-                                        </li>
-                                        <li>
-                                            <div class="progress percent80"><span>80%</span></div>
-                                            <strong>PowerPoint e Storytelling</strong>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-controls clickable" style="display: none;"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div></div></div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Olá!</h3>
+                    <p>Atualmente estou voltando minha prática e meus estudos para Análise de Dados. Procuro estar sempre atualizado quanto às novas tecnologias para criar ferramentas mais modernas e avançadas.</p>
+                    <p>Busco oportunidades como Analista de Dados onde eu possa aplicar minhas habilidades em análise descritiva e diagnóstica para auxiliar na tomada de decisão.</p>
+                    <p>Trabalhei como Gestor de Market de forma autônoma e também fui vendedor de consórcio de veículos, mas isso não vem ao caso aqui.</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="row about-content about-content--buttons">
-            <div class="col-six tab-full right">
-                <a href="mailto:gv77544@gmail.com" class="btn full-width">Me contrate</a>
-            </div>
-        </div>
-
-        <div class="row about-content about-content--timeline">
-            <div class="col-six tab-full left">
-                <h3>Formação Acadêmica.</h3>
-                <div class="timeline">
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">mar 2026 - Em Andamento</p>
-                            <h3>Ciências Contábeis</h3>
-                            <h5>Universidade Anheguera</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>Bacharelado.</p>
-                        </div>
+                <div class="about-skills">
+                    <h3>Minhas principais habilidades.</h3>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Análise descritiva e diagnóstica</span><span class="val">90%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:90%"></div></div>
                     </div>
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">maio 2026 - dez 2026</p>
-                            <h3>Formação Analista de Dados</h3>
-                            <h5>Comunidade DS</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>Especialização.</p>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Excel</span><span class="val">100%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:100%"></div></div>
                     </div>
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">maio 2026 - dez 2026</p>
-                            <h3>CDS+</h3>
-                            <h5>Comunidade DS</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>Experiência Profissional.</p>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Power BI</span><span class="val">100%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:100%"></div></div>
                     </div>
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">dez 2026 - dez 2027</p>
-                            <h3>Formação Cientista de Dados</h3>
-                            <h5>Comunidade DS</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>Experiência Profissional.</p>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>SQL</span><span class="val">100%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:100%"></div></div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-six tab-full right">
-                <h3>Experiência Profissional.</h3>
-                <div class="timeline">
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">2026 - Presente</p>
-                            <h3>Formação Analista de Dados</h3>
-                            <h5>Comunidade DS</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>
-                                - Base sólida em Análise de Dados, leitura, organização e interpretação de informações e uso consciente das principais ferramentas do mercado.<br>
-                                - Análises orientadas a resultados, diagnóstico de problemas e geração de insights e a comunicação clara de dados para tomada de decisão.<br>
-                                - Criação e manutenção de dashboards com os principais KPIs dos times de vendas e marketing.<br>
-                                Stack: Python, SQL, Excel, Power BI, PowerPoint, Looker Studio.
-                            </p>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Python</span><span class="val">100%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:100%"></div></div>
                     </div>
-                    <div class="timeline__block">
-                        <div class="timeline__bullet"></div>
-                        <div class="timeline__header">
-                            <p class="timeline__timeframe">2026 - Presente</p>
-                            <h3>CDS+</h3>
-                            <h5>Comunidade DS</h5>
-                        </div>
-                        <div class="timeline__desc">
-                            <p>
-                                - Análise de Dados com Python<br>
-                                - Relatórios de Vendas com Power BI<br>
-                                - Análise de Cohort com Excel<br>
-                                - Análise de Segmentação com Excel<br>
-                                - Hierarquia de Dados nas Empresas
-                            </p>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>Estatística</span><span class="val">80%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:80%"></div></div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Seção de cursos/certificados (oculta, mas mantida) -->
-        <div class="s-testimonials" style="display: none;">
-            <div class="overlay" style="display: none;"></div>
-            <div class="row testimonials-header">
-                <div class="col-full">
-                    <h1 class="h02">Cursos e Certificações.</h1>
-                </div>
-            </div>
-            <div class="row testimonials">
-                <div class="col-full testimonials__slider slick-initialized slick-slider">
-                    <div class="slick-prev slick-arrow" style=""><i class="im im-arrow-left" aria-hidden="true"></i></div>
-                    <!-- Mantido vazio pois os certificados do Leonardo não se aplicam -->
-                    <div class="slick-next slick-arrow" style=""><i class="im im-arrow-right" aria-hidden="true"></i></div>
+                    <div class="skill-item">
+                        <div class="skill-name"><span>PowerPoint e Storytelling</span><span class="val">80%</span></div>
+                        <div class="progress-bar"><div class="fill" style="width:80%"></div></div>
+                    </div>
+                    <div style="margin-top:1.5rem; text-align:center;">
+                        <a href="mailto:gv77544@gmail.com" class="btn btn-primary">Me contrate</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Works / Portfolio -->
-    <section id="works" class="s-works target-section">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <h3>Portfolio</h3>
-                <h1>Veja meus últimos projetos.</h1>
-                <p class="lead">Aqui você pode visualizar meus últimos projetos. Para ver mais, acesse meu <a href="https://github.com/gustavoshelby0" target="_blank">GitHub</a>.</p>
+    <!-- ===== CURRÍCULO ===== -->
+    <section id="resume">
+        <div class="container">
+            <div class="section-title">
+                <h2>Currículo</h2>
+                <p>Formação e experiência profissional.</p>
+            </div>
+            <div class="resume-grid">
+                <!-- Coluna esquerda: Formação -->
+                <div>
+                    <h3>Formação Acadêmica.</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="date">mar 2026 – Em Andamento</div>
+                            <h4>Ciências Contábeis</h4>
+                            <div class="institution">Universidade Anheguera</div>
+                            <div class="desc">Bacharelado.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">maio 2026 – dez 2026</div>
+                            <h4>Formação Analista de Dados</h4>
+                            <div class="institution">Comunidade DS</div>
+                            <div class="desc">Especialização.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">maio 2026 – dez 2026</div>
+                            <h4>CDS+</h4>
+                            <div class="institution">Comunidade DS</div>
+                            <div class="desc">Experiência Profissional.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">dez 2026 – dez 2027</div>
+                            <h4>Formação Cientista de Dados</h4>
+                            <div class="institution">Comunidade DS</div>
+                            <div class="desc">Experiência Profissional.</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Coluna direita: Experiência -->
+                <div>
+                    <h3>Experiência Profissional.</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="date">2026 – Presente</div>
+                            <h4>Formação Analista de Dados</h4>
+                            <div class="institution">Comunidade DS</div>
+                            <ul>
+                                <li>Base sólida em Análise de Dados, leitura, organização e interpretação de informações e uso consciente das principais ferramentas do mercado.</li>
+                                <li>Análises orientadas a resultados, diagnóstico de problemas e geração de insights e a comunicação clara de dados para tomada de decisão.</li>
+                                <li>Criação e manutenção de dashboards com os principais KPIs dos times de vendas e marketing.</li>
+                            </ul>
+                            <div class="desc">Stack: Python, SQL, Excel, Power BI, PowerPoint, Looker Studio.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="date">2026 – Presente</div>
+                            <h4>CDS+</h4>
+                            <div class="institution">Comunidade DS</div>
+                            <ul>
+                                <li>Análise de Dados com Python</li>
+                                <li>Relatórios de Vendas com Power BI</li>
+                                <li>Análise de Cohort com Excel</li>
+                                <li>Análise de Segmentação com Excel</li>
+                                <li>Hierarquia de Dados nas Empresas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="row masonry-wrap">
-            <div class="masonry" style="position: relative; height: 1200px;">
-
+    <!-- ===== PORTFOLIO ===== -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <p>Veja meus últimos projetos. Para ver mais, acesse meu <a href="https://github.com/gustavoshelby0" target="_blank">GitHub</a>.</p>
+            </div>
+            <div class="portfolio-grid">
                 <!-- Projeto 1 -->
-                <div class="masonry__brick" style="position: absolute; left: 0px; top: 0px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/28/undraw_quitting_time_dm-8-t_featured.png" class="thumb-link" title="Análise de Campanha de Marketing" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/28/undraw_quitting_time_dm-8-t_mini.png" srcset="/media/thumbnails/2021/11/28/undraw_quitting_time_dm-8-t_mini.png 1x, /media/zoom_images/2021/11/28/undraw_quitting_time_dm-8-t_zoom.png 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Análise de Campanha de Marketing</h3>
-                            <p class="item-folio__cat">Análise &amp; Visualização</p>
-                        </div>
-                        <a href="https://github.com/Meigarom/campanha-marketing-ifood" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Avaliação do desempenho de uma campanha de Marketing utilizando Python e Power BI.</p>
+                <div class="project-card">
+                    <div class="thumb">📊</div>
+                    <div class="info">
+                        <h4>Análise de Campanha de Marketing</h4>
+                        <div class="cat">Análise &amp; Visualização</div>
+                        <p>Avaliação do desempenho de uma campanha de Marketing utilizando Python e Power BI.</p>
+                        <div class="links">
+                            <a href="https://github.com/Meigarom/campanha-marketing-ifood" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Projeto 2 -->
-                <div class="masonry__brick" style="position: absolute; left: 400px; top: 0px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/24/g-way2b.jpg" class="thumb-link" title="Dashboard de Vendas" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/24/way2b.jpg" srcset="/media/thumbnails/2021/11/24/way2b.jpg 1x, /media/zoom_images/2021/11/24/way2b2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Dashboard de Vendas com Power BI</h3>
-                            <p class="item-folio__cat">Business Intelligence</p>
-                        </div>
-                        <a href="https://github.com/gustavoshelby0/dashboard-vendas" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Dashboard interativo para acompanhamento de KPIs de vendas, com análise de segmentação e cohort.</p>
+                <div class="project-card">
+                    <div class="thumb">📈</div>
+                    <div class="info">
+                        <h4>Dashboard de Vendas com Power BI</h4>
+                        <div class="cat">Business Intelligence</div>
+                        <p>Dashboard interativo para acompanhamento de KPIs de vendas, com análise de segmentação e cohort.</p>
+                        <div class="links">
+                            <a href="https://github.com/gustavoshelby0/dashboard-vendas" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Projeto 3 -->
-                <div class="masonry__brick" style="position: absolute; left: 800px; top: 0px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/24/g-suellen.jpg" class="thumb-link" title="Análise de Dados com Python" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/24/suellen.jpg" srcset="/media/thumbnails/2021/11/24/suellen.jpg 1x, /media/zoom_images/2021/11/24/suellen2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Análise de Dados com Python</h3>
-                            <p class="item-folio__cat">Ciência de Dados</p>
-                        </div>
-                        <a href="https://github.com/gustavoshelby0/analise-python" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Projeto de análise exploratória e diagnóstica utilizando Python, Pandas e Matplotlib.</p>
+                <div class="project-card">
+                    <div class="thumb">🐍</div>
+                    <div class="info">
+                        <h4>Análise de Dados com Python</h4>
+                        <div class="cat">Ciência de Dados</div>
+                        <p>Projeto de análise exploratória e diagnóstica utilizando Python, Pandas e Matplotlib.</p>
+                        <div class="links">
+                            <a href="https://github.com/gustavoshelby0/analise-python" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Projeto 4 -->
-                <div class="masonry__brick" style="position: absolute; left: 0px; top: 400px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/24/g-santander.jpg" class="thumb-link" title="Relatório de Cohort" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/24/santander.jpg" srcset="/media/thumbnails/2021/11/24/santander.jpg 1x, /media/zoom_images/2021/11/24/santander2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Análise de Cohort com Excel</h3>
-                            <p class="item-folio__cat">Análise &amp; Visualização</p>
-                        </div>
-                        <a href="https://github.com/gustavoshelby0/cohort-excel" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Análise de retenção de clientes utilizando técnicas de cohort no Excel.</p>
+                <div class="project-card">
+                    <div class="thumb">📉</div>
+                    <div class="info">
+                        <h4>Análise de Cohort com Excel</h4>
+                        <div class="cat">Análise &amp; Visualização</div>
+                        <p>Análise de retenção de clientes utilizando técnicas de cohort no Excel.</p>
+                        <div class="links">
+                            <a href="https://github.com/gustavoshelby0/cohort-excel" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Projeto 5 -->
-                <div class="masonry__brick" style="position: absolute; left: 400px; top: 400px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/24/g-titanic.jpg" class="thumb-link" title="Segmentação de Clientes" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/24/titanic.jpg" srcset="/media/thumbnails/2021/11/24/titanic.jpg 1x, /media/zoom_images/2021/11/24/titanic2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Segmentação de Clientes</h3>
-                            <p class="item-folio__cat">Automação</p>
-                        </div>
-                        <a href="https://github.com/gustavoshelby0/segmentacao-clientes" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Segmentação de base de clientes utilizando RFM e clustering com Python.</p>
+                <div class="project-card">
+                    <div class="thumb">👥</div>
+                    <div class="info">
+                        <h4>Segmentação de Clientes</h4>
+                        <div class="cat">Automação</div>
+                        <p>Segmentação de base de clientes utilizando RFM e clustering com Python.</p>
+                        <div class="links">
+                            <a href="https://github.com/gustavoshelby0/segmentacao-clientes" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
                 <!-- Projeto 6 -->
-                <div class="masonry__brick" style="position: absolute; left: 800px; top: 400px;">
-                    <div class="item-folio">
-                        <div class="item-folio__thumb">
-                            <a href="/media/featured_images/2021/11/24/g-alvarenga.jpg" class="thumb-link" title="Storytelling com PowerPoint" data-size="1050x700">
-                                <img src="/media/thumbnails/2021/11/24/alvarenga.jpg" srcset="/media/thumbnails/2021/11/24/alvarenga.jpg 1x, /media/zoom_images/2021/11/24/alvarenga2x.jpg 2x" alt="">
-                                <span class="shadow-overlay"></span>
-                            </a>
-                        </div>
-                        <div class="item-folio__text">
-                            <h3 class="item-folio__title">Storytelling com PowerPoint</h3>
-                            <p class="item-folio__cat">Comunicação</p>
-                        </div>
-                        <a href="https://github.com/gustavoshelby0/storytelling" class="item-folio__project-link" title="Link para o projeto" target="_blank" rel="noopener">
-                            <i class="im im-link"></i>
-                        </a>
-                        <div class="item-folio__caption">
-                            <p>Apresentação de insights de dados utilizando técnicas de storytelling e PowerPoint.</p>
+                <div class="project-card">
+                    <div class="thumb">📽️</div>
+                    <div class="info">
+                        <h4>Storytelling com PowerPoint</h4>
+                        <div class="cat">Comunicação</div>
+                        <p>Apresentação de insights de dados utilizando técnicas de storytelling e PowerPoint.</p>
+                        <div class="links">
+                            <a href="https://github.com/gustavoshelby0/storytelling" target="_blank">🔗 Ver projeto</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Blog (oculto, mantido) -->
-    <section id="blog" class="s-blog target-section" style="display: none;">
-        <div class="row narrow section-intro has-bottom-sep">
-            <div class="col-full">
-                <h3>Blog</h3>
-                <h1>Posts Recentes.</h1>
-                <p class="lead">Em breve, artigos sobre Análise de Dados.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section id="stats" class="s-stats">
-        <div class="row block-1-4 block-tab-1-2 block-mob-full stats">
-            <div class="col-block stats__col">
-                <div class="stats__count">3</div>
-                <h4>Projetos Concluídos</h4>
-            </div>
-            <div class="col-block stats__col stats__col--highlight">
-                <div class="stats__upsign">
-                    <a href="#works"><i class="im im-arrow-up" aria-hidden="true"></i></a>
+    <!-- ===== STATS ===== -->
+    <section id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="number">3</div>
+                    <div class="label">Projetos Concluídos</div>
                 </div>
-                <div class="stats__count">5</div>
-                <h4>Projetos em Andamento</h4>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">4</div>
-                <h4>Certificações</h4>
-            </div>
-            <div class="col-block stats__col">
-                <div class="stats__count">200+</div>
-                <h4>Horas de Estudo</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="s-contact target-section">
-        <div class="overlay"></div>
-        <div class="row narrow section-intro">
-            <div class="col-full">
-                <h3>Contato</h3>
-                <h1>Fale comigo.</h1>
-                <p class="lead">Me diga no que posso te ajudar ou deixe alguma sugestão, elogio ou reclamação.</p>
-            </div>
-        </div>
-
-        <div class="row contact__main">
-            <div class="col-eight tab-full contact__form" style="display: none;">
-                <!-- Formulário removido para manter a simplicidade -->
-            </div>
-            <div class="col-four tab-full contact__infos">
-                <h4 class="h06">Telefone</h4>
-                <p>Celular: +55 85 99226-7086</p>
-                <h4 class="h06">E-Mail</h4>
-                <p>gv77544@gmail.com</p>
-                <h4 class="h06" style="display: none;">Endereço</h4>
-                <p style="display: none;">Fortaleza/CE, Brasil</p>
+                <div class="stat-item">
+                    <div class="number">5</div>
+                    <div class="label">Projetos em Andamento</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">4</div>
+                    <div class="label">Certificações</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">200+</div>
+                    <div class="label">Horas de Estudo</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== CONTATO ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contato</h2>
+                <p>Me diga no que posso te ajudar ou deixe alguma sugestão, elogio ou reclamação.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>Telefone</h4>
+                    <p>Celular: +55 85 99226-7086</p>
+                </div>
+                <div class="contact-item">
+                    <h4>E-Mail</h4>
+                    <p><a href="mailto:gv77544@gmail.com">gv77544@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="row">
-            <div class="col-full">
-                <ul class="footer-social">
-                    <li><a href="https://www.linkedin.com/in/gustavoshelby/" target="_blank"><i class="im im-linkedin" aria-hidden="true"></i><span>LinkedIn</span></a></li>
-                    <li><a href="https://github.com/gustavoshelby0" target="_blank"><i class="im im-github" aria-hidden="true"></i><span>Github</span></a></li>
-                </ul>
+        <div class="container">
+            <div class="social">
+                <a href="https://www.linkedin.com/in/gustavoshelby/" target="_blank" aria-label="LinkedIn">🔗</a>
+                <a href="https://github.com/gustavoshelby0" target="_blank" aria-label="GitHub">🐙</a>
             </div>
-        </div>
-        <div class="row footer-bottom">
-            <div class="col-twelve">
-                <div class="copyright">
-                    <span>© Copyright Gustavo Vieira da Silva Bastos</span>
-                </div>
-                <div class="go-top" style="display: none;">
-                    <a class="smoothscroll" title="Voltar ao topo" href="#top"><i class="im im-arrow-up" aria-hidden="true"></i></a>
-                </div>
+            <div class="copyright">
+                © <strong>Gustavo Vieira da Silva Bastos</strong>
             </div>
         </div>
     </footer>
 
-    <!-- PhotoSwipe -->
-    <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
-        <div class="pswp__bg"></div>
-        <div class="pswp__scroll-wrap">
-            <div class="pswp__container">
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-            </div>
-            <div class="pswp__ui pswp__ui--hidden">
-                <div class="pswp__top-bar">
-                    <div class="pswp__counter"></div>
-                    <button class="pswp__button pswp__button--close" title="Fechar (Esc)"></button>
-                    <button class="pswp__button pswp__button--share" title="Compartilhar"></button>
-                    <button class="pswp__button pswp__button--fs" title="Fullscreen"></button>
-                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                    <div class="pswp__preloader">
-                        <div class="pswp__preloader__icn">
-                            <div class="pswp__preloader__cut">
-                                <div class="pswp__preloader__donut"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                    <div class="pswp__share-tooltip"></div>
-                </div>
-                <button class="pswp__button pswp__button--arrow--left" title="Anterior (seta esquerda)"></button>
-                <button class="pswp__button pswp__button--arrow--right" title="Posterior (seta direita)"></button>
-                <div class="pswp__caption">
-                    <div class="pswp__caption__center"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="preloader" style="display: none;">
-        <div id="loader" style="display: none;"></div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="/static/website/js/jquery-3.2.1.min.c9f5aeeca3ad.js"></script>
-    <script src="/static/website/js/plugins.856f73cd3e04.js"></script>
-    <script src="/static/website/js/main.8dedd4394bc8.js"></script>
+    <!-- ===== PARTICLES.JS ===== -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script type="text/javascript">
-        particlesJS("particles-js", {
+    <script>
+        particlesJS('particles-js', {
             "particles": {
-                "number": { "value": 120, "density": { "enable": true, "value_area": 1000 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } },
-                "opacity": { "value": 0.3, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.5, "width": 1 },
-                "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.4,
+                    "random": false,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "size": {
+                    "value": 2.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.15,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false
+                    }
+                }
             },
             "interactivity": {
                 "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": false
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": {
+                        "distance": 100,
+                        "duration": 0.4
+                    }
+                }
             },
             "retina_detect": true
         });
     </script>
 
+    <!-- Menu mobile (opcional) -->
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const navUl = document.querySelector('.nav ul');
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                navUl.classList.toggle('open');
+            });
+            document.querySelectorAll('.nav ul li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) navUl.classList.remove('open');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
