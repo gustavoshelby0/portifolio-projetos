@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Gustavo Shelby</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNdfNV6RYOpFgfhAlC-PlD5_5t4RcccuiRsaRzc9i8VA&s=10" type="image/png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Font Awesome para ícones oficiais -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -67,7 +69,7 @@
             padding: 0 20px;
         }
 
-        /* ===== HEADER com logo ===== */
+        /* ===== HEADER sem logo ===== */
         .header {
             background: #111;
             border-bottom: 1px solid #2a2a2a;
@@ -80,11 +82,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .logo img {
-            height: 40px;
-            width: auto;
-            display: block;
         }
         .nav ul {
             list-style: none;
@@ -509,9 +506,6 @@
             .header .container {
                 flex-wrap: wrap;
             }
-            .logo {
-                flex: 1;
-            }
             .nav-toggle {
                 display: block;
                 margin-left: auto;
@@ -544,12 +538,10 @@
 </head>
 <body>
 
-    <!-- ===== HEADER com logo ===== -->
+    <!-- ===== HEADER sem logo ===== -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNdfNV6RYOpFgfhAlC-PlD5_5t4RcccuiRsaRzc9i8VA&s=10" alt="Logo Gustavo Shelby" />
-            </div>
+            <!-- A div .logo foi removida conforme solicitado -->
             <nav class="nav">
                 <ul>
                     <li><a href="#home">Início</a></li>
