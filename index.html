@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Gustavo Shelby</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome para ícones oficiais -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         /* ===== RESET E BASE ===== */
         * {
@@ -476,7 +478,9 @@
         }
         footer .social a {
             color: #aaa;
-            font-size: 1.4rem;
+            font-size: 1.8rem; /* Ajuste para os ícones do Font Awesome */
+            transition: color 0.2s;
+            line-height: 1;
         }
         footer .social a:hover {
             color: #D9CB30;
@@ -805,8 +809,13 @@
     <footer>
         <div class="container">
             <div class="social">
-                <a href="https://www.linkedin.com/in/gustavo-shelby-339a202a4" target="_blank" aria-label="LinkedIn">🔗</a>
-                <a href="https://github.com/gustavoshelby0" target="_blank" aria-label="GitHub">🐙</a>
+                <!-- Ícones oficiais do LinkedIn e GitHub via Font Awesome -->
+                <a href="https://www.linkedin.com/in/gustavo-shelby-339a202a4" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/gustavoshelby0" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
             <div class="copyright">
                 © <strong>Gustavo Shelby</strong>
